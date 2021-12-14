@@ -1,58 +1,61 @@
 <template>
-
   <div>
-    
-    <div class="list">
-    <div @click="setSelectedPunk(punk.token_id)" v-for="punk in punks" :key="punk.token_id">
-      <CollectionCard  :punk="punk" />
+    <div v-dragscroll class="list">
+      <div
+        @click="setSelectedPunk(punk.token_id)"
+        v-for="punk in punks"
+        :key="punk.token_id"
+      >
+        <CollectionCard :punk="punk" />
+      </div>
     </div>
-    
-  </div>
   </div>
 </template>
 
 <script>
 import CollectionCard from "./CollectionCard.vue";
+import { dragscroll } from "vue-dragscroll";
 
 export default {
+  directives: {
+    dragscroll,
+  },
   components: {
     CollectionCard,
   },
-  props: ['punks',],
+  props: ["punks"],
   methods: {
-    setSelectedPunk(id){
-      this.$emit('setActivePunk', id)
-    }
+    setSelectedPunk(id) {
+      this.$emit("setActivePunk", id);
+    },
   },
   data() {
-      return {
-        
-          // punk: {
-          //     name: 'gecko',
-          //     id: 0,
-          //     traits: [{
-          //         value: 7
-          //     }],
-          //     img: 'https://lh3.googleusercontent.com/m-Ws730SPYfr1hhPi44UWd923AthhSYnetE8x32yJf1b4GPOTOwdsgK9yXN7naVm7Y884R7e7yTxzMjDGfwpZaRQmfgA4Zo5CXy_jg=w294'
-          // }
-      }
+    return {
+      // punk: {
+      //     name: 'gecko',
+      //     id: 0,
+      //     traits: [{
+      //         value: 7
+      //     }],
+      //     img: 'https://lh3.googleusercontent.com/m-Ws730SPYfr1hhPi44UWd923AthhSYnetE8x32yJf1b4GPOTOwdsgK9yXN7naVm7Y884R7e7yTxzMjDGfwpZaRQmfgA4Zo5CXy_jg=w294'
+      // }
+    };
   },
 };
 </script>
 
 <style >
-  .list{
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    overflow: scroll;
-    margin-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid white;
+.list {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  overflow: scroll;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid white;
+}
 
-  }
-
-  .list::-webkit-scrollbar {
-    display: none;
-  }
+.list::-webkit-scrollbar {
+  display: none;
+}
 </style>
