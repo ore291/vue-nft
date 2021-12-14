@@ -81,7 +81,7 @@ export default {
 }
 
 .title {
-  font-size: 96px;
+  font-size: 80px;
   font-weight: 800;
 }
 
